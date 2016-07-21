@@ -4,10 +4,16 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Perspective", root_path, id: "logo" %></li>
       </ul>
-      <div class="nav navbar-nav navbar-right btn-group">
-        <%= link_to "Log in", "#", class: "btn navbar-btn btn-default" %>
-        <%= link_to "Sign Up", "#", class: "btn btn-success navbar-btn" %>
-      </div>
+      <% if logged_in? %>
+        <div class="nav navbar-nav navbar-right btn-group">
+          <%= link_to "#{current_user.username }", user_path(current_user), class: "btn navbar-btn btn-default" %>
+        </div>
+      <% else %>
+        <div class="nav navbar-nav navbar-right btn-group">
+          <%= link_to "Log in", login_path, class: "btn navbar-btn btn-default" %>
+          <%= link_to "Sign Up", signup_path, class: "btn btn-primary navbar-btn" %>
+        </div>
+      <% end %>
     </div>
   </nav>
 </header>
